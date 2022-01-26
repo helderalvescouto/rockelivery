@@ -1,7 +1,7 @@
 defmodule Rockelivery.Users.Delete do
   alias Rockelivery.Users.User
   alias Ecto.UUID
-  alias Rockelivery.Repo
+  alias Rockelivery.{Error, Repo}
 
   def call(id) do
     id
@@ -9,7 +9,7 @@ defmodule Rockelivery.Users.Delete do
     |> delete()
   end
 
-  defp delete(:error), do: {:error, %{status: :bad_request, result: "Invalid ID format!"}}
+  defp delete(:error), do: {:error, Error.build_id_format_error()}
 
   defp delete({:ok, uuid}) do
     User
@@ -17,7 +17,7 @@ defmodule Rockelivery.Users.Delete do
     |> handle_delete()
   end
 
-  defp handle_delete(nil), do: {:error, %{status: :not_found, result: "User not found!"}}
+  defp handle_delete(nil), do: {:error, Error.build_user_not_found_error()}
 
   defp handle_delete(user), do: Repo.delete(user)
 end

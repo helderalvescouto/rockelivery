@@ -1,15 +1,15 @@
 defmodule Rockelivery.Users.Get do
   alias Rockelivery.Users.User
   alias Ecto.UUID
-  alias Rockelivery.Repo
+  alias Rockelivery.{Error, Repo}
 
   def by_id2(id) do
     with {:ok, uuid} <- UUID.cast(id),
          %User{} = user <- Repo.get(User, uuid) do
       {:ok, user}
     else
-      :error -> {:error, %{status: :bad_request, result: "Invalid ID format!"}}
-      nil -> {:error, %{status: :not_found, result: "User not found!"}}
+      :error -> {:error, Error.build_id_format_error()}
+      nil -> {:error, Error.build_user_not_found_error()}
     end
   end
 
@@ -19,7 +19,7 @@ defmodule Rockelivery.Users.Get do
     |> get()
   end
 
-  defp get(:error), do: {:error, %{status: :bad_request, result: "Invalid ID format!"}}
+  defp get(:error), do: {:error, Error.build_id_format_error()}
 
   defp get({:ok, uuid}) do
     User
@@ -27,7 +27,7 @@ defmodule Rockelivery.Users.Get do
     |> handle_get()
   end
 
-  defp handle_get(nil), do: {:error, %{status: :not_found, result: "User not found!"}}
+  defp handle_get(nil), do: {:error, Error.build_user_not_found_error()}
 
   defp handle_get(user), do: {:ok, user}
 end
