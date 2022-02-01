@@ -28,6 +28,6 @@ defmodule RockeliveryWeb.UsersViewTest do
       }
     }
 
-    assert response = expected_response
+    assert response == expected_response
   end
 end
