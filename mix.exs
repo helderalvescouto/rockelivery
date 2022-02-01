@@ -40,6 +40,7 @@ defmodule Rockelivery.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bypass, "~> 2.1", only: :test},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:pbkdf2_elixir, "~> 2.0"},
       {:phoenix, "~> 1.5.8"},
@@ -48,6 +49,7 @@ defmodule Rockelivery.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_machina, "~> 2.7.0"},
       {:hackney, "~> 1.17"},
+      {:mox, "~> 1.0", only: :test},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_dashboard, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},

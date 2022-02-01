@@ -19,5 +19,5 @@ defmodule Rockelivery.Error do
 
   def build_invalid_cep_error, do: build(:bad_request, "Invalid CEP!")
 
-  def build_invalid_format_cep_error, do: build(:bad_request, "Invalid format CEP!")
+  def build_invalid_format_cep_error(status, result), do: build(status, result)
 end

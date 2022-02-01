@@ -45,7 +45,15 @@ defmodule RockeliveryWeb.UsersControllerTest do
         |> post(Routes.users_path(conn, :create, params))
         |> json_response(:bad_request)
 
-      expected_response = %{"message" => %{"address" => ["can't be blank"], "age" => ["can't be blank"], "cep" => ["can't be blank"], "cpf" => ["can't be blank"], "email" => ["can't be blank"]}}
+      expected_response = %{
+        "message" => %{
+          "address" => ["can't be blank"],
+          "age" => ["can't be blank"],
+          "cep" => ["can't be blank"],
+          "cpf" => ["can't be blank"],
+          "email" => ["can't be blank"]
+        }
+      }
 
       assert response == expected_response
     end
