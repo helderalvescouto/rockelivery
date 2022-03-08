@@ -48,6 +48,7 @@ defmodule Rockelivery.MixProject do
       {:ecto_sql, "~> 3.4"},
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_machina, "~> 2.7.0"},
+      {:guardian, "~> 2.0"},
       {:hackney, "~> 1.17"},
       {:mox, "~> 1.0", only: :test},
       {:postgrex, ">= 0.0.0"},
